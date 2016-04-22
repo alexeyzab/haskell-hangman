@@ -18,7 +18,7 @@ instance Show Puzzle where
   show (Puzzle _ discovered guessed mistakes) =
     (intersperse ' ' $ fmap renderPuzzleChar discovered)
     ++ " Guessed so far: " ++ guessed
-    ++ " Mistakes: " ++ (show mistakes)
+    ++ " Bad guesses: " ++ (show mistakes)
 
 allWords :: IO WordList
 allWords = do
@@ -82,7 +82,7 @@ handleGuess puzzle guess = do
   case (charInWord puzzle guess
       , alreadyGuessed puzzle guess) of
    (_, True) -> do
-     putStrLn "You alread guessed that\
+     putStrLn "You already guessed that\
                \ character, pick something else!"
      return puzzle
    (True, _) -> do
